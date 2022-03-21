@@ -4,7 +4,7 @@
   "description": "repo for assignments and practice problems",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "npx nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,10 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.12.9"
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.12.9",
+    "nodemon": "^2.0.15",
+    "validator": "^13.7.0"
   }
 }
