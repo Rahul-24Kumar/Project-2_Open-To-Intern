@@ -1,6 +1,7 @@
 const collegeModel = require('../Models/collegeModel')
 
-const Collage = async function (req, res) {
+//  CREATE COLLEGE:
+const College = async function (req, res) {
     try {
         const data = req.body
         if (!data) return res.status(400).send({ status: false, message:"data is requried" })
@@ -12,5 +13,4 @@ const Collage = async function (req, res) {
     }
 }
 
-
-module.exports.Collage = Collage
+module.exports.College = College

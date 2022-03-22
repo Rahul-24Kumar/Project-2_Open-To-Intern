@@ -37,4 +37,4 @@ const internModel = new mongoose.Schema({
     },
 })
 
-module.exports = mongoose.model('inter', internModel )
+module.exports = mongoose.model('intern', internModel )

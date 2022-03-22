@@ -4,7 +4,7 @@
 
 ### Key points
 - Create a group database `groupXDatabase`. You can clean the db you previously used and resue that.
-- This time each group should have a *single git branch*. Coordinate amongst yourselves by ensuring every next person pulls the code last pushed by a team mate. You branch will be checked as part of the demo. Branch name should follow the naming convention `project/internshipGroupX`
+- This time each group should have a *single git branch*. Coordinate amongst yourselves by ensuring every next person pulls the code last pushed by a team mate. You branch will be checked as part of the demo. Branch name should follow the naming convention ``project/internshipGroupX
 - Follow the naming conventions exactly as instructed. The backend code will be integrated with the front-end application which means any mismatch in the expected request body will lead to failure in successful integration.
 
 ### Models
@@ -125,3 +125,29 @@ Refer below sample
   }
 }
 ```
+
+Open to Intern Project:
+APPROACHED USED IN THIS PROJECT :
+
+//(1) ### POST /functionup/colleges: DONE COMPLETELY
+
+//(2) ### POST /functionup/interns: DONE COMPLETELY
+
+//(3) ### GET /functionup/interns: DONE COMPLETELY
+
+TESTING: ALL TESTING COMPLETED AND UPDATED IN POSTMAN AND MONGODB.
+
+PROJECT DONE BY MEMBER OF GROUP-42: @ Rahul Kumar Chaurasia
+
+SEARCHED WEBSITES DURING PROJECT MAKING : 
+(1) STACK OVERFLOW- https://stackoverflow.com/ 
+(2) NPM DOCS - https://docs.npmjs.com/about-npm 
+(3) MDN - https://developer.mozilla.org/en-US/docs/Web/JavaScript 
+
+DATABASE CONNECTED -mongodb+srv://Rahul_Kumar:Rahul@123@cluster0.13adp.mongodb.net/Group-42-Database?retryWrites=true&w=majority
+
+PROJECT BEGIN FROM : 21/03/2022 
+PROJECT COMPLETED ON : 22/03/2022 
+SUBMISSION DAY : 23/03/2022
+
+                          ####################### THANK YOU #############################
