@@ -1,49 +1,72 @@
-const internModel = require("../Models/internModel")
-const collegeModel = require("../Models/collegeModel")
-const express = require('express');
-const { Router } = require('express');
-const router = express.Router();
+const collegeModel = require('../models/collegeModel')
+const internModel = require('../models/internModel')
 
-//CREATE INTERN:
-const Intern = async function (req, res) {
+const isValid = function (value) {
+    if (typeof value === 'undefined' || typeof value === null) return false
+    if (typeof value === 'string' && value.trim().length === 0) return false
+    return true
+}
+
+const isValidRequestBody = function (requestBody) {
+    return Object.keys(requestBody).length > 0
+}
+
+const createIntern = async function (req, res) {
     try {
-        let data = req.body
-        let collegeId = req.body.collegeId
-        if (!data) return res.status(400).send({ status:false ,message:'Data is required'})
-        let collegeInfo = await collegeModel.findById(collegeId)
-        if (!collegeInfo) return res.status(404).send({status:false, message:'There is no intern with the given college id'})
-        let createInterns = await internModel.create(data)
-        res.status(201).send({ status:true , data:createInterns })
+        const internData = req.body;
+        const { name, email, mobile, collegeId } = internData
+
+
+        if (!isValidRequestBody(internData)) {
+            res.status(400).send({ status: false, msg: 'please enter intern data' })
+            return
+        }
+        if (!isValid(name)) {
+            res.status(400).send({ status: false, msg: 'plese enter intern name' })
+            return
+        }
+        if (!isValid(email)) {
+            res.status(400).send({ status: false, msg: 'please enter intern email' })
+            return
+        }
+        if (!isValid(mobile)) {
+            res.status(400).send({ status: false, msg: 'please enter intern mobile' })
+            return
+        }
+        if (!isValid(collegeId)) {
+            res.status(400).send({ status: false, msg: 'please enter intern college Id' })
+            return
+        }
+        const emails = await internModel.findOne({ email: email });
+        if (emails) {
+            return res.status(400).send({ status: false, msg: "email already exists" });
+        }
+        const Numbers = await internModel.findOne({ mobile: mobile });
+        if (Numbers) {
+            return res.status(400).send({ status: false, msg: "mobile number already exists" });
+        }
+        if (internData) {
+            let savedData = await internModel.create(internData)
+            res.status(201).send({ status: true, data: { savedData } })
+        }
+        else {
+            res.status(400).send({ status: false, msg: "enter valid data" })
+        }
+
+        // let collegeData = await collegeModel.findOne({name:collegeName,isDeleted:false});
+
+        // internData.collegeId=collegeData._id
+
+        //     let savedData = await internModel.create(internData)
+        //     res.status(201).send({status: true, data: {savedData} });
+
     }
     catch (err) {
-        console.log(err)
-        res.status(500).send({status:false , message: err.message })
+
+        res.status(500).send({ status: false, msg: err.message });
     }
 }
 
-//  GET DETAILS OF THE INTERNS IN THEIR RESPECTIVE COLLEGES :
-const internsInfo = async function (req, res) {
-    try {
-        let college_name = req.query.collegeName
-        if(!college_name){
-            return res.status(400).send({status:false,  msg: "college name must be persent"})
-        }
-        let dataBody = await collegeModel.findOne({ name: college_name })
-        let data = JSON.parse(JSON.stringify(dataBody))
-        const college_id = dataBody._id
-        if (!dataBody) {
-           return res.status(403).send({ status: false, message: "The given input is Invalid" });
-        }
-        let interns = await internModel.find({ collegeId:college_id}).select({_id:true,name:true,email:true,mobile:true})
-         data = {name:dataBody.name,fullName:dataBody.fullName,logoLink:dataBody.logoLink}
-        data.interest = [...interns]
-        res.status(200).send({status:true,data:data});
-    }
-        catch (err) {
-            console.log(err)
-            res.status(500).send({status:false , message: err.message })
-        }
-    }
 
-module.exports.Intern = Intern
-module.exports.internsInfo = internsInfo
+
+module.exports.createIntern = createIntern 
